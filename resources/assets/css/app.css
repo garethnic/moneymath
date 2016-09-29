@@ -20,6 +20,9 @@ body, html {
     justify-content: space-around;
 }
 /*Header styles*/
+.header {
+    cursor: pointer;
+}
 .header-title {
     padding: 0.75em;
     width: 100%;
@@ -31,6 +34,10 @@ body, html {
 }
 .header-negative {
     background-color: #ac2925;
+    color: #ffffff;
+}
+.header-overview {
+    background-color: #2e6da4;
     color: #ffffff;
 }
 /*Form*/
