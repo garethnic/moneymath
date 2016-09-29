@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ed9df8b872992035f068a7fe461a635a",
-    "content-hash": "76036da3b5b55b91dbe1e1affa01bf9e",
+    "hash": "b853b932d6302362ae01b6c08c4240ca",
+    "content-hash": "5b87c1a692e415a4802e734132e03521",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -160,6 +160,61 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "io-digital/repo",
+            "version": "v0.1.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/io-digital/repo.git",
+                "reference": "4f9dbbaa4dd3b8e22c35095692b716d9028517c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/io-digital/repo/zipball/4f9dbbaa4dd3b8e22c35095692b716d9028517c9",
+                "reference": "4f9dbbaa4dd3b8e22c35095692b716d9028517c9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": "~5.5|~7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "IoDigital\\Repo\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gareth Nicholson",
+                    "email": "gareth.nic@io.co.za",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily generate the Repository Pattern in Laravel",
+            "homepage": "https://github.com/io-digital/repo",
+            "keywords": [
+                "laravel",
+                "pattern",
+                "repo",
+                "repository"
+            ],
+            "time": "2016-09-06 13:02:58"
         },
         {
             "name": "jakub-onderka/php-console-color",

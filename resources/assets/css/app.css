@@ -82,6 +82,10 @@ body, html {
         flex-direction: column;
         width: 100%;
     }
+    .overview-table th:last-child {
+        text-align: right;
+        padding: 10px;
+    }
     .header-title {
         padding: 0.75em;
         width: 97.5%;
@@ -99,6 +103,10 @@ body, html {
     .app {
         flex-direction: column;
         width: 100%;
+    }
+    .overview-table th:last-child {
+        text-align: right;
+        padding: 10px;
     }
     .header-title {
         padding: 0.75em;
