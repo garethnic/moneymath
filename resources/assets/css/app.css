@@ -10,11 +10,13 @@ body, html {
     justify-content: center;
     align-content: center;
     flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
 }
 .app {
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
 }
 /*Header styles*/
@@ -74,4 +76,39 @@ body, html {
 }
 .overview-table tr:last-child td {
     border-top: 1px solid black;
+}
+@media screen and (max-width: 980px) {
+    .app {
+        flex-direction: column;
+        width: 100%;
+    }
+    .header-title {
+        padding: 0.75em;
+        width: 97.5%;
+        text-align: center;
+    }
+    .form-holder {
+        justify-content: center;
+        margin-bottom: 0.5em;
+    }
+    .overview-table {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 780px) {
+    .app {
+        flex-direction: column;
+        width: 100%;
+    }
+    .header-title {
+        padding: 0.75em;
+        text-align: center;
+    }
+    .form-holder {
+        justify-content: center;
+        margin-bottom: 0.5em;
+    }
+    .overview-table {
+        width: 100%;
+    }
 }

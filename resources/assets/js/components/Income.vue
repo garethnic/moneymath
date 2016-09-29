@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="child income">
         <div class="header-title header-positive">Income</div>
 
         <div class="form-holder">

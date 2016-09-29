@@ -2,7 +2,7 @@
     <div class="app">
         <income></income>
         <expense></expense>
-        <div>
+        <div class="child overview">
             <table class="overview-table">
                 <tr>
                     <th>Item</th>
