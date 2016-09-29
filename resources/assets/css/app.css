@@ -59,11 +59,19 @@ body, html {
     color: red;
 }
 .overview-table {
-    width: 100%;
+    width: 14em;
+    border-collapse: collapse;
+}
+.overview-table td {
+    padding: 10px;
 }
 .overview-table th {
     text-align: left;
+    padding: 10px;
 }
 .overview-table td:nth-child(2) {
     text-align: right;
+}
+.overview-table tr:last-child td {
+    border-top: 1px solid black;
 }
