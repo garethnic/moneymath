@@ -1,0 +1,69 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+/*App Layout*/
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+.app {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+/*Header styles*/
+.header-title {
+    padding: 0.75em;
+    width: 100%;
+    text-align: center;
+}
+.header-positive {
+    background-color: #2ca02c;
+    color: #ffffff;
+}
+.header-negative {
+    background-color: #ac2925;
+    color: #ffffff;
+}
+/*Form*/
+.form-holder {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.form-holder input {
+    height: 3em;
+    margin: 1em .5em 0 .5em;
+    padding: 0;
+    text-align: center;
+}
+.form-holder button {
+    padding: 1em;
+}
+/*Table of items*/
+.items-table {
+    width: 100%;
+    margin-top: .5em;
+}
+.items-table th {
+    text-align: left;
+}
+.remove-button {
+    color: red;
+}
+.overview-table {
+    width: 100%;
+}
+.overview-table th {
+    text-align: left;
+}
+.overview-table td:nth-child(2) {
+    text-align: right;
+}
