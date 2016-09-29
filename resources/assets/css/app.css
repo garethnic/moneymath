@@ -78,6 +78,9 @@ body, html {
     text-align: left;
     padding: 10px;
 }
+.overview-table th:last-child {
+    text-align: right;
+}
 .overview-table td:nth-child(2) {
     text-align: right;
 }
