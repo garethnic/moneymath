@@ -3,11 +3,18 @@
         <div class="header header-title header-negative" v-on:click="toggleDisplay">Expenses</div>
 
         <span v-show="display">
-            <div class="form-holder">
-                <input type="text" name="incomeName" v-model="name" id="incomeItem" placeholder="Add Item" />
-                <input type="text" name="incomeAmount" v-model="amount" id=incomeAmount" placeholder="Add Amount" />
-                <button v-on:click="add">Add</button>
-            </div>
+            <validator name="validation2">
+                <div class="errors">
+                    <p v-if="$validation2.name.required && $validation2.name.dirty">A name is required.</p>
+                    <p v-if="$validation2.amount.required && $validation2.amount.dirty">An amount is required.</p>
+                    <p v-if="$validation2.amount.pattern && $validation2.amount.dirty">Amount needs to be a number.</p>
+                </div>
+                <div class="form-holder">
+                    <input type="text" name="incomeName" v-model="name" id="expenseItem" placeholder="Add Item" v-validate:name="{required: true}"/>
+                    <input type="number" name="incomeAmount" v-model="amount" id=expenseAmount" placeholder="Add Amount" v-validate:amount="{required: true, pattern:'/(0|[1-9][0-9]*)$/'}" />
+                    <button v-on:click="add" v-if="$validation2.valid">Add</button>
+                </div>
+            </validator>
 
             <div v-if="items.length > 0">
                 <table class="items-table">

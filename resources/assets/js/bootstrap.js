@@ -17,6 +17,10 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+
+var validator = require('vue-validator');
+window.Vue.use(validator);
+
 require('vue-resource');
 require('vue-router');
 
