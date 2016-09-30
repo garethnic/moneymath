@@ -5,9 +5,9 @@
         <span v-show="display">
             <validator name="validation2">
                 <div class="errors">
-                    <p v-if="$validation2.name.required && $validation2.name.dirty">A name is required.</p>
-                    <p v-if="$validation2.amount.required && $validation2.amount.dirty">An amount is required.</p>
-                    <p v-if="$validation2.amount.pattern && $validation2.amount.dirty">Amount needs to be a number.</p>
+                    <p v-if="$validation2.name.required && $validation2.name.modified">A name is required.</p>
+                    <p v-if="$validation2.amount.required && $validation2.amount.modified">An amount is required.</p>
+                    <p v-if="$validation2.amount.pattern && $validation2.amount.modified">Amount needs to be a number.</p>
                 </div>
                 <div class="form-holder">
                     <input type="text" name="incomeName" v-model="name" id="expenseItem" placeholder="Add Item" v-validate:name="{required: true}"/>
