@@ -92,8 +92,13 @@ nav a {
 .items-table th {
     text-align: left;
 }
+.items-table td {
+    padding: 0.5em 0 1.5em 0;
+
+}
 .remove-button {
     color: red;
+    cursor: pointer;
 }
 .overview-table {
     width: 14em;
