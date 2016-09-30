@@ -15,6 +15,10 @@ class CreateIncomesTable extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('amount', false);
+            $table->integer('user_id', false, true);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

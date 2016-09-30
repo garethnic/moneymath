@@ -11,6 +11,18 @@ class Summary extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'total'
+    ];
+
+    /**
+     * Set relationship with User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }
