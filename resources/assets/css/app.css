@@ -56,6 +56,10 @@ body, html {
 .form-holder button {
     padding: 1em;
 }
+.errors {
+    color: red;
+    margin: 1%;
+}
 /*Table of items*/
 .items-table {
     width: 100%;
