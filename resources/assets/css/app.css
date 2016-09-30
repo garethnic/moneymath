@@ -1,7 +1,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 /*Navigation*/
 .navBar {
@@ -123,7 +123,6 @@ nav a {
     }
     .header-title {
         padding: 0.75em;
-        width: 97.5%;
         text-align: center;
     }
     .form-holder {
