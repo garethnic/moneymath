@@ -1,7 +1,12 @@
 <nav class="navBar">
     <ul>
-        <li class="nav-item"><a href="/login">Login</a></li>
-        <li class="nav-item"><a href="/logout">Logout</a></li>
+        @if (Auth::check())
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+        @else
+            <li class="nav-item"><a href="/login">Login</a></li>
+        @endif
+
+        <li class="nav-item"><a href="/register">Register</a></li>
     </ul>
 </nav>
 
