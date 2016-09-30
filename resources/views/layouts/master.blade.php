@@ -7,6 +7,9 @@
         <meta name="description" content="A simple way to keep track of your monthly expenses">
         <meta name="keywords" content="income,expenses,money,overview,amount,net,moneymath">
 
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>MoneyMath</title>
 
         <!-- Fonts -->

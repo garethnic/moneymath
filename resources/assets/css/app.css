@@ -40,6 +40,9 @@ nav a {
     flex-direction: row;
     justify-content: space-around;
 }
+.app-name {
+    margin-bottom: 1em;
+}
 /*Header styles*/
 .header {
     cursor: pointer;
@@ -117,6 +120,9 @@ nav a {
         flex-direction: column;
         width: 100%;
     }
+    .app-name {
+        margin-bottom: 0.5em;
+    }
     .overview-table th:last-child {
         text-align: right;
         padding: 10px;
@@ -151,6 +157,9 @@ nav a {
     .app {
         flex-direction: column;
         width: 100%;
+    }
+    .app-name {
+        margin-bottom: 0.5em;
     }
     .overview-table th:last-child {
         text-align: right;

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1>MoneyMath</h1>
+    <h1 class="app-name">MoneyMath</h1>
     <container></container>
 @stop
 
