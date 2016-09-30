@@ -1,10 +1,31 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+/*Navigation*/
+.navBar {
+    padding: .5em;
+}
+.slicknav_menu {
+    display:none;
+}
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+nav a {
+    text-decoration: none;
+    color: #1b6d85;
+}
+.nav-item {
+    padding: 2em;
 }
 /*App Layout*/
-.container {
+.app-entry {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,6 +39,9 @@ body, html {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+.app-name {
+    margin-bottom: 1em;
 }
 /*Header styles*/
 .header {
@@ -68,8 +92,13 @@ body, html {
 .items-table th {
     text-align: left;
 }
+.items-table td {
+    padding: 0.5em 0 1.5em 0;
+
+}
 .remove-button {
     color: red;
+    cursor: pointer;
 }
 .overview-table {
     width: 14em;
@@ -96,13 +125,15 @@ body, html {
         flex-direction: column;
         width: 100%;
     }
+    .app-name {
+        margin-bottom: 0.5em;
+    }
     .overview-table th:last-child {
         text-align: right;
         padding: 10px;
     }
     .header-title {
         padding: 0.75em;
-        width: 97.5%;
         text-align: center;
     }
     .form-holder {
@@ -111,6 +142,20 @@ body, html {
     }
     .overview-table {
         width: 100%;
+    }
+    .navBar {
+        display:none;
+    }
+    .slicknav_menu {
+        display:block;
+        background-color: #fff !important;
+    }
+    .slicknav_menu a {
+        text-decoration: none;
+        color: #1b6d85 !important;
+    }
+    .slicknav_btn {
+        background-color: #1b6d85 !important;
     }
 }
 @media screen and (max-width: 780px) {
@@ -118,6 +163,9 @@ body, html {
         flex-direction: column;
         width: 100%;
     }
+    .app-name {
+        margin-bottom: 0.5em;
+    }
     .overview-table th:last-child {
         text-align: right;
         padding: 10px;
@@ -132,5 +180,18 @@ body, html {
     }
     .overview-table {
         width: 100%;
+    }
+    .navBar {
+        display:none;
+    }
+    .slicknav_menu {
+        display:block;
+    }
+    .slicknav_menu a {
+        text-decoration: none;
+        color: #1b6d85 !important;
+    }
+    .slicknav_btn {
+        background-color: #1b6d85 !important;
     }
 }

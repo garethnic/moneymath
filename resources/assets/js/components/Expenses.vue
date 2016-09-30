@@ -25,7 +25,7 @@
                     <tr v-for="item in items">
                         <td>{{ item.name }}</td>
                         <td>{{ item.amount }}</td>
-                        <td><button v-on:click="removeItem($index)" class="remove-button">X</button></td>
+                        <td><span class="glyphicon glyphicon-remove remove-button" aria-hidden="true" v-on:click="removeItem($index)"></span></td>
                     </tr>
                 </table>
             </div>
