@@ -33,15 +33,22 @@ nav a {
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
+    padding: 0.25em
 }
 .app {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
 .app-name {
     margin-bottom: 1em;
+}
+/*App Layout*/
+.income,
+.expenses,
+.overview {
+    flex-grow: 1;
 }
 /*Header styles*/
 .header {
@@ -63,12 +70,13 @@ nav a {
 .header-overview {
     background-color: #2e6da4;
     color: #ffffff;
+    flex-grow: 1;
 }
 /*Form*/
 .form-holder {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: baseline;
 }
 .form-holder input {
@@ -101,7 +109,7 @@ nav a {
     cursor: pointer;
 }
 .overview-table {
-    width: 14em;
+    width: 100%;
     border-collapse: collapse;
 }
 .overview-table td {
