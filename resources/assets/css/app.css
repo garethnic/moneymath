@@ -25,7 +25,7 @@ nav a {
     padding: 2em;
 }
 /*App Layout*/
-.container {
+.app-entry {
     display: flex;
     align-items: center;
     justify-content: center;
