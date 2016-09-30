@@ -30,5 +30,10 @@
         @yield('scripts')
 
         <script src="js/jquery.slicknav.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.navBar').slicknav({label: ''});
+            });
+        </script>
     </body>
 </html>
