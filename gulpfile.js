@@ -21,4 +21,5 @@ elixir(mix => {
 
     mix.copy('resources/assets/js/slicknav/jquery.slicknav.min.js', 'public/js/jquery.slicknav.min.js');
     mix.copy('resources/assets/js/slicknav/slicknav.min.css', 'public/css/slicknav.min.css');
+    mix.copy('resources/assets/js/notify/notify.min.js', 'public/js/notify.min.js');
 });
