@@ -45,6 +45,19 @@
                 display: true
             }
         },
+        ready: function () {
+            this.$http.get('/get-expense').then(response => {
+                if (response.data.expenses.length > 0) {
+                    response.data.expenses.forEach((expenses) => {
+                        let holdItems = {};
+                        holdItems.name = expenses.name;
+                        holdItems.amount = expenses.amount;
+                        this.items.push(holdItems);
+                        this.updateTotal();
+                    });
+                }
+            });
+        },
         methods: {
             add: function (e) {
                 let holdItems = {};
@@ -52,6 +65,13 @@
                 holdItems.amount = this.amount;
 
                 this.items.push(holdItems);
+
+                this.$http.post('/add-expense', {name: this.name, amount: this.amount}).then(response => {
+                    this.$notice(response.data.success, 'success');
+                }, error => {
+                    this.$notice(error.data.error, 'error');
+                });
+
                 this.name = '';
                 this.amount = '';
                 this.updateTotal();
@@ -63,7 +83,7 @@
             updateTotal: function () {
                 let total = 0;
                 this.items.forEach(item => {
-                    total += parseInt(item.amount);
+                    total += parseFloat(item.amount);
                 });
 
                 this.$dispatch('expenses-total', total);

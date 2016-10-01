@@ -45,6 +45,19 @@
                 display: true
             }
         },
+        ready: function () {
+            this.$http.get('/get-income').then(response => {
+                if (response.data.income.length > 0) {
+                    response.data.income.forEach((income) => {
+                        let holdItems = {};
+                        holdItems.name = income.name;
+                        holdItems.amount = income.amount;
+                        this.items.push(holdItems);
+                        this.updateTotal();
+                    });
+                }
+            });
+        },
         methods: {
             add: function (e) {
                 let holdItems = {};
@@ -52,6 +65,13 @@
                 holdItems.amount = this.amount;
 
                 this.items.push(holdItems);
+
+                this.$http.post('/add-income', {name: this.name, amount: this.amount}).then(response => {
+                    this.$notice(response.data.success, 'success');
+                }, error => {
+                    this.$notice(error.data.error, 'error');
+                });
+
                 this.name = '';
                 this.amount = '';
                 this.updateTotal();
@@ -63,7 +83,7 @@
             updateTotal: function () {
                 let total = 0;
                 this.items.forEach(item => {
-                   total += parseInt(item.amount);
+                   total += parseFloat(item.amount);
                 });
 
                 this.$dispatch('income-total', total);
