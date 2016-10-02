@@ -56,6 +56,23 @@ class AppController extends Controller
     }
 
     /**
+     * Delete Income
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteIncome(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->incomes()->find($request->item)->delete()) {
+            return response()->json(['success' => 'Item removed!'], 200);
+        } else {
+            return response()->json(['error' => 'Item was not removed!', 500]);
+        }
+    }
+
+    /**
      * Add Expense
      *
      * @param Request $request
@@ -96,6 +113,23 @@ class AppController extends Controller
     }
 
     /**
+     * Delete Expense
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteExpense(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->expenses()->find($request->item)->delete()) {
+            return response()->json(['success' => 'Item removed!'], 200);
+        } else {
+            return response()->json(['error' => 'Item was not removed!', 500]);
+        }
+    }
+
+    /**
      * Update Summary
      *
      * Not added to frontend
@@ -129,7 +163,7 @@ class AppController extends Controller
      * Return Summary
      *
      * Not added to frontend
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */

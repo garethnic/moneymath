@@ -41,6 +41,7 @@
             return {
                 name: '',
                 amount: '',
+                identifier: '',
                 items: [],
                 display: true
             }
@@ -52,6 +53,7 @@
                         let holdItems = {};
                         holdItems.name = income.name;
                         holdItems.amount = income.amount;
+                        holdItems.identifier = income.id;
                         this.items.push(holdItems);
                         this.updateTotal();
                     });
@@ -77,6 +79,14 @@
                 this.updateTotal();
             },
             removeItem: function (item) {
+                let itemId = this.items[item].identifier;
+
+                this.$http.post('/remove-income', {item: itemId}).then(response => {
+                    this.$notice(response.data.success, 'success');
+                }, error => {
+                    this.$notice(error.data.error, 'error');
+                });
+
                 this.items.splice(item, 1);
                 this.updateTotal();
             },
