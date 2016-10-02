@@ -35,7 +35,10 @@ class AppController extends Controller
         ]);
 
         if ($income) {
-            return response()->json(['success' => 'Income saved!'], 200);
+            return response()->json([
+                'success' => 'Income saved!',
+                'identifier' => $income->id
+            ], 200);
         } else {
             return response()->json(['error' => 'Income not saved!', 500]);
         }
@@ -93,7 +96,10 @@ class AppController extends Controller
         ]);
 
         if ($expense) {
-            return response()->json(['success' => 'Expense saved!'], 200);
+            return response()->json([
+                'success' => 'Expense saved!',
+                'identifier' => $expense->id
+            ], 200);
         } else {
             return response()->json(['error' => 'Expense not saved!', 500]);
         }

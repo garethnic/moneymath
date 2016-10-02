@@ -66,16 +66,18 @@
                 holdItems.name = this.name;
                 holdItems.amount = this.amount;
 
-                this.items.push(holdItems);
-
                 this.$http.post('/add-expense', {name: this.name, amount: this.amount}).then(response => {
                     this.$notice(response.data.success, 'success');
+                    holdItems.identifier = response.data.identifier;
                 }, error => {
                     this.$notice(error.data.error, 'error');
                 });
 
+                this.items.push(holdItems);
+
                 this.name = '';
                 this.amount = '';
+                this.identifier = '';
                 this.updateTotal();
             },
             removeItem: function (item) {
