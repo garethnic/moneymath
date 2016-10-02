@@ -41,9 +41,24 @@
             return{
                 name: '',
                 amount: '',
+                identifier: '',
                 items: [],
                 display: true
             }
+        },
+        ready: function () {
+            this.$http.get('/get-expense').then(response => {
+                if (response.data.expenses.length > 0) {
+                    response.data.expenses.forEach((expenses) => {
+                        let holdItems = {};
+                        holdItems.name = expenses.name;
+                        holdItems.amount = expenses.amount;
+                        holdItems.identifier = expenses.id;
+                        this.items.push(holdItems);
+                        this.updateTotal();
+                    });
+                }
+            });
         },
         methods: {
             add: function (e) {
@@ -51,19 +66,36 @@
                 holdItems.name = this.name;
                 holdItems.amount = this.amount;
 
+                this.$http.post('/add-expense', {name: this.name, amount: this.amount}).then(response => {
+                    this.$notice(response.data.success, 'success');
+                    holdItems.identifier = response.data.identifier;
+                }, error => {
+                    this.$notice(error.data.error, 'error');
+                });
+
                 this.items.push(holdItems);
+
                 this.name = '';
                 this.amount = '';
+                this.identifier = '';
                 this.updateTotal();
             },
             removeItem: function (item) {
+                let itemId = this.items[item].identifier;
+
+                this.$http.post('/remove-expense', {item: itemId}).then(response => {
+                    this.$notice(response.data.success, 'success');
+                }, error => {
+                    this.$notice(error.data.error, 'error');
+                });
+
                 this.items.splice(item, 1);
                 this.updateTotal();
             },
             updateTotal: function () {
                 let total = 0;
                 this.items.forEach(item => {
-                    total += parseInt(item.amount);
+                    total += parseFloat(item.amount);
                 });
 
                 this.$dispatch('expenses-total', total);

@@ -16,6 +16,27 @@ class Summary extends Model
     ];
 
     /**
+     * Convert value to cents
+     *
+     * @param $value
+     */
+    public function setTotalAttribute($value)
+    {
+        $this->attributes['total'] = $value * 100;
+    }
+
+    /**
+     * Convert value to rands
+     *
+     * @param $value
+     * @return float|int
+     */
+    public function getTotalAttribute($value)
+    {
+        return $value / 100;
+    }
+
+    /**
      * Set relationship with User
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
