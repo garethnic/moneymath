@@ -148,6 +148,13 @@ nav a {
         justify-content: center;
         margin-bottom: 0.5em;
     }
+    .form-holder input {
+        width: 25%;
+        flex-grow: 1;
+    }
+    .form-holder button {
+        width: 30%;
+    }
     .overview-table {
         width: 100%;
     }
@@ -185,6 +192,14 @@ nav a {
     .form-holder {
         justify-content: center;
         margin-bottom: 0.5em;
+        flex-wrap: wrap;
+    }
+    .form-holder input {
+        width: 25%;
+        flex-grow: 1;
+    }
+    .form-holder button {
+        width: 30%;
     }
     .overview-table {
         width: 100%;
