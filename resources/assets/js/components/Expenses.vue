@@ -34,6 +34,8 @@
 </template>
 
 <script>
+    import request from 'superagent';
+
     export default{
         name: 'Expense',
 
@@ -47,18 +49,7 @@
             }
         },
         ready: function () {
-            this.$http.get('/get-expense').then(response => {
-                if (response.data.expenses.length > 0) {
-                    response.data.expenses.forEach((expenses) => {
-                        let holdItems = {};
-                        holdItems.name = expenses.name;
-                        holdItems.amount = expenses.amount;
-                        holdItems.identifier = expenses.id;
-                        this.items.push(holdItems);
-                        this.updateTotal();
-                    });
-                }
-            });
+            this.initialLoad();
         },
         methods: {
             add: function (e) {
@@ -66,31 +57,45 @@
                 holdItems.name = this.name;
                 holdItems.amount = this.amount;
 
-                this.$http.post('/add-expense', {name: this.name, amount: this.amount}).then(response => {
-                    this.$notice(response.data.success, 'success');
-                    holdItems.identifier = response.data.identifier;
-                }, error => {
-                    this.$notice(error.data.error, 'error');
-                });
+                request
+                        .post('/add-expense')
+                        .set('X-CSRF-TOKEN', Laravel.csrfToken)
+                        .send({name: this.name, amount: this.amount})
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (err || !response.ok) {
+                                this.$notice(err.data.error, 'error');
+                            } else {
+                                this.$notice(response.body.success, 'success');
+                                holdItems.identifier = response.body.identifier;
 
-                this.items.push(holdItems);
+                                this.items.push(holdItems);
 
-                this.name = '';
-                this.amount = '';
-                this.identifier = '';
-                this.updateTotal();
+                                this.name = '';
+                                this.amount = '';
+                                this.identifier = '';
+                                this.updateTotal();
+                            }
+                        }.bind(this));
             },
             removeItem: function (item) {
                 let itemId = this.items[item].identifier;
 
-                this.$http.post('/remove-expense', {item: itemId}).then(response => {
-                    this.$notice(response.data.success, 'success');
-                }, error => {
-                    this.$notice(error.data.error, 'error');
-                });
+                request
+                        .post('/remove-expense')
+                        .set('X-CSRF-TOKEN', Laravel.csrfToken)
+                        .send({item: itemId})
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (err || !response.ok) {
+                                this.$notice(err.body.error, 'error');
+                            } else {
+                                this.$notice(response.body.success, 'success');
 
-                this.items.splice(item, 1);
-                this.updateTotal();
+                                this.items.splice(item, 1);
+                                this.updateTotal();
+                            }
+                        }.bind(this));
             },
             updateTotal: function () {
                 let total = 0;
@@ -106,6 +111,24 @@
                 } else {
                     this.display = true;
                 }
+            },
+            initialLoad: function () {
+                request
+                        .get('/get-expense')
+                        .set('X-CSRF-TOKEN', Laravel.csrf)
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (response.body.expenses.length > 0) {
+                                response.body.expenses.forEach((expenses) => {
+                                    let holdItems = {};
+                                    holdItems.name = expenses.name;
+                                    holdItems.amount = expenses.amount;
+                                    holdItems.identifier = expenses.id;
+                                    this.items.push(holdItems);
+                                    this.updateTotal();
+                                });
+                            }
+                        }.bind(this));
             }
         }
     }
