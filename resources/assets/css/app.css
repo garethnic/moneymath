@@ -87,6 +87,7 @@ nav a {
 }
 .form-holder button {
     padding: 1em;
+    width: 20%;
 }
 .errors {
     color: red;
