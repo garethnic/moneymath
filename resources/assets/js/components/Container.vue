@@ -53,7 +53,8 @@
         },
         computed: {
           leftOver: function () {
-              return this.income - this.expenses;
+              let summary = this.income - this.expenses;
+              return summary.toFixed(2);
           }
         },
         components: {
