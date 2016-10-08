@@ -33,9 +33,4 @@
             </div>
         </div>
     </div>
-
-    <footer class="home-footer">
-        <p>Created by Gareth Nicholson</p>
-        <p>{{ date('Y') }}</p>
-    </footer>
 @endsection
