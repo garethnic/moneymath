@@ -5,6 +5,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::get('/app', 'AppController@showApp');
+Route::get('/contact', 'HomeController@showContact');
 
 Route::post('/add-income', 'AppController@addIncome');
 Route::get('/get-income', 'AppController@getIncome');
