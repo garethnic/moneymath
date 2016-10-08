@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use Validator;
 use ReCaptcha\ReCaptcha;
+use App\Mail\WelcomeUser;
 use App\Models\Objects\User;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -69,10 +71,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        Mail::to($user)->send(new WelcomeUser($user));
+
+        return $user;
     }
 }
