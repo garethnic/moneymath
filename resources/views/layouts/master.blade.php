@@ -16,8 +16,8 @@
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/app.css" rel="stylesheet">
-        <link href="css/slicknav.min.css" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/slicknav.min.css') }}" rel="stylesheet">
 
         @yield('styles')
 
@@ -38,7 +38,7 @@
 
         @yield('scripts')
 
-        <script src="js/jquery.slicknav.min.js"></script>
+        <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
         <script>
             $(document).ready(function () {
                 $('.navBar').slicknav({label: ''});
@@ -52,7 +52,10 @@
 
             ga('create', 'UA-85366072-1', 'auto');
             ga('send', 'pageview');
-
         </script>
+        <footer class="home-footer">
+            <p>Created by Gareth Nicholson</p>
+            <p>{{ date('Y') }}</p>
+        </footer>
     </body>
 </html>
