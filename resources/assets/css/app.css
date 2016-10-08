@@ -3,6 +3,53 @@ body, html {
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
 }
+/*Homepage*/
+.home-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 4px solid #482058;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: #482058 4px 4px 10px;
+    padding: 1em;
+}
+.home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.home-title {
+    align-self: center;
+    margin-bottom: 5%;
+}
+.home-description p:nth-child(even) {
+    margin: 2% 0 2% 0;
+}
+.home-description {
+    display: flex;
+    flex-direction: column;
+}
+.home-description img {
+    width: 50%;
+    margin-top: 1%;
+    align-self: center;
+}
+/*Image Gallery*/
+#home-slider {
+    box-shadow: none;
+    margin: 0 auto;
+    width: 50%;
+}
+.home-closing {
+    margin-top: 2%;
+}
+.home-footer {
+    display: flex;
+    margin-top: 20%;
+    align-items: center;
+    flex-direction: column;
+}
 /*Navigation*/
 .navBar {
     padding: .5em;
@@ -223,5 +270,14 @@ nav a {
     }
     .slicknav_btn {
         background-color: #1b6d85 !important;
+    }
+    .home-title > h1 {
+        font-size: 24px;
+    }
+    .home-container {
+        width: 90%;
+    }
+    .home-description img {
+        width: 80%;
     }
 }
