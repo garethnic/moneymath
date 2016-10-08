@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('styles')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -63,6 +67,13 @@
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4"></label>
+                            <div class="col-md-6">
+                                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
                             </div>
                         </div>
 

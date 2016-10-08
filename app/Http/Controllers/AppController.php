@@ -11,7 +11,18 @@ class AppController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
+    }
 
+    /**
+     * Return app view
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showApp(Request $request)
+    {
+        return view('index');
     }
 
     /**
