@@ -15,6 +15,17 @@ class AppController extends Controller
     }
 
     /**
+     * Return app view
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showApp(Request $request)
+    {
+        return view('index');
+    }
+
+    /**
      * Add Income
      *
      * @param Request $request
