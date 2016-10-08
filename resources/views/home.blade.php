@@ -27,8 +27,7 @@
                     <a href="mailto:suggestions@moneymath.org.za?Subject=Suggestion">email</a> with your suggestions.
                 </p>
                 <p>
-                    Work is under way into the next phase of MoneyMath. Adding month to month facilities and reports is
-                    the next goal. Keeping things simple will remaina high priority.
+                    Work is under way into the next phase of MoneyMath. Keeping things simple will remain a high priority.
                 </p>
             </div>
         </div>
