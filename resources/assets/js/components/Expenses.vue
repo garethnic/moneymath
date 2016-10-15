@@ -10,7 +10,7 @@
                     <p v-if="$validation2.amount.pattern && $validation2.amount.modified">Amount needs to be a number.</p>
                 </div>
                 <div class="form-holder">
-                    <input type="text" name="incomeName" v-model="name" id="expenseItem" placeholder="Add Item" v-validate:name="{required: true}"/>
+                    <input type="text" name="incomeName" v-model="name" id="expenseItem" placeholder="Food" v-validate:name="{required: true}"/>
                     <input type="number" name="incomeAmount" v-model="amount" id=expenseAmount" placeholder="Add Amount" v-validate:amount="{required: true, pattern:'/(0|[1-9][0-9]*)$/'}" />
                     <button v-on:click="add" v-if="$validation2.valid">Add</button>
                 </div>
