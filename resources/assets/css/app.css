@@ -1,10 +1,78 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+/*Homepage*/
+.home-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 4px solid #482058;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: #482058 4px 4px 10px;
+    padding: 1em;
+}
+.home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.home-title {
+    align-self: center;
+    margin-bottom: 5%;
+}
+.home-description p:nth-child(even) {
+    margin: 2% 0 2% 0;
+}
+.home-description {
+    display: flex;
+    flex-direction: column;
+}
+.home-description img {
+    width: 50%;
+    margin-top: 1%;
+    align-self: center;
+}
+/*Image Gallery*/
+#home-slider {
+    box-shadow: none;
+    margin: 0 auto;
+    width: 50%;
+}
+.home-closing {
+    margin-top: 2%;
+}
+.home-footer {
+    display: flex;
+    margin-top: 20%;
+    align-items: center;
+    flex-direction: column;
+}
+/*Navigation*/
+.navBar {
+    padding: .5em;
+}
+.slicknav_menu {
+    display:none;
+}
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+nav a {
+    text-decoration: none;
+    color: #1b6d85;
+}
+.nav-item {
+    padding: 2em;
 }
 /*App Layout*/
-.container {
+.app-entry {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,12 +80,22 @@ body, html {
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
+    padding: 0.25em
 }
 .app {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+}
+.app-name {
+    margin-bottom: 1em;
+}
+/*App Layout*/
+.income,
+.expenses,
+.overview {
+    flex-grow: 1;
 }
 /*Header styles*/
 .header {
@@ -39,12 +117,13 @@ body, html {
 .header-overview {
     background-color: #2e6da4;
     color: #ffffff;
+    flex-grow: 1;
 }
 /*Form*/
 .form-holder {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: baseline;
 }
 .form-holder input {
@@ -55,6 +134,11 @@ body, html {
 }
 .form-holder button {
     padding: 1em;
+    width: 20%;
+}
+.errors {
+    color: red;
+    margin: 1%;
 }
 /*Table of items*/
 .items-table {
@@ -64,11 +148,22 @@ body, html {
 .items-table th {
     text-align: left;
 }
+.items-table td {
+    padding: 0.5em 0 1.5em 0;
+
+}
+.items-table td:first-child {
+    width: 60%;
+}
+.items-table td:nth-child(2) {
+    width: 30%;
+}
 .remove-button {
     color: red;
+    cursor: pointer;
 }
 .overview-table {
-    width: 14em;
+    width: 100%;
     border-collapse: collapse;
 }
 .overview-table td {
@@ -87,10 +182,16 @@ body, html {
 .overview-table tr:last-child td {
     border-top: 1px solid black;
 }
+.contact-table th, .contact-table td {
+    padding: 1em;
+}
 @media screen and (max-width: 980px) {
     .app {
         flex-direction: column;
         width: 100%;
+    }
+    .app-name {
+        margin-bottom: 0.5em;
     }
     .overview-table th:last-child {
         text-align: right;
@@ -98,15 +199,35 @@ body, html {
     }
     .header-title {
         padding: 0.75em;
-        width: 97.5%;
         text-align: center;
     }
     .form-holder {
         justify-content: center;
         margin-bottom: 0.5em;
     }
+    .form-holder input {
+        width: 25%;
+        flex-grow: 1;
+    }
+    .form-holder button {
+        width: 30%;
+    }
     .overview-table {
         width: 100%;
+    }
+    .navBar {
+        display:none;
+    }
+    .slicknav_menu {
+        display:block;
+        background-color: #fff !important;
+    }
+    .slicknav_menu a {
+        text-decoration: none;
+        color: #1b6d85 !important;
+    }
+    .slicknav_btn {
+        background-color: #1b6d85 !important;
     }
 }
 @media screen and (max-width: 780px) {
@@ -114,6 +235,9 @@ body, html {
         flex-direction: column;
         width: 100%;
     }
+    .app-name {
+        margin-bottom: 0.5em;
+    }
     .overview-table th:last-child {
         text-align: right;
         padding: 10px;
@@ -125,8 +249,41 @@ body, html {
     .form-holder {
         justify-content: center;
         margin-bottom: 0.5em;
+        flex-wrap: wrap;
+    }
+    .form-holder input {
+        width: 25%;
+        flex-grow: 1;
+    }
+    .form-holder button {
+        width: 30%;
     }
     .overview-table {
         width: 100%;
+    }
+    .navBar {
+        display:none;
+    }
+    .slicknav_menu {
+        display:block;
+    }
+    .slicknav_menu a {
+        text-decoration: none;
+        color: #1b6d85 !important;
+    }
+    .slicknav_btn {
+        background-color: #1b6d85 !important;
+    }
+    .home-title > h1 {
+        font-size: 24px;
+    }
+    .home-container {
+        width: 90%;
+    }
+    .home-description img {
+        width: 80%;
+    }
+    .contact-table th, .contact-table td {
+        padding: 0.5em;
     }
 }

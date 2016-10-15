@@ -2,9 +2,9 @@
     <div class="app">
         <income></income>
         <expense></expense>
-        <div>
+        <div class="child overview">
             <div class="header header-title header-overview" v-on:click="toggleDisplay">Overview</div>
-            <div class="child overview">
+            <div>
                 <span v-show="display">
                     <table class="overview-table">
                         <tr>
@@ -53,7 +53,8 @@
         },
         computed: {
           leftOver: function () {
-              return this.income - this.expenses;
+              let summary = this.income - this.expenses;
+              return summary.toFixed(2);
           }
         },
         components: {

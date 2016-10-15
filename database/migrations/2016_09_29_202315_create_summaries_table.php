@@ -15,6 +15,10 @@ class CreateSummariesTable extends Migration
     {
         Schema::create('summaries', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('total', false);
+            $table->integer('user_id', false, true);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

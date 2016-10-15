@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use Validator;
+use ReCaptcha\ReCaptcha;
+use App\Mail\WelcomeUser;
+use App\Models\Objects\User;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -27,7 +30,9 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/app';
+
+    protected $recaptcha;
 
     /**
      * Create a new controller instance.
@@ -37,6 +42,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->recaptcha = new ReCaptcha(env('RECAPTCHA_SECRET_KEY'));
     }
 
     /**
@@ -47,10 +53,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $resp = $this->recaptcha->verify($data['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'g-recaptcha-response' => 'required'
         ]);
     }
 
@@ -62,10 +71,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        Mail::to($user)->send(new WelcomeUser($user));
+
+        return $user;
     }
 }

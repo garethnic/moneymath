@@ -3,11 +3,18 @@
         <div class="header header-title header-negative" v-on:click="toggleDisplay">Expenses</div>
 
         <span v-show="display">
-            <div class="form-holder">
-                <input type="text" name="incomeName" v-model="name" id="incomeItem" placeholder="Add Item" />
-                <input type="text" name="incomeAmount" v-model="amount" id=incomeAmount" placeholder="Add Amount" />
-                <button v-on:click="add">Add</button>
-            </div>
+            <validator name="validation2">
+                <div class="errors">
+                    <p v-if="$validation2.name.required && $validation2.name.modified">A name is required.</p>
+                    <p v-if="$validation2.amount.required && $validation2.amount.modified">An amount is required.</p>
+                    <p v-if="$validation2.amount.pattern && $validation2.amount.modified">Amount needs to be a number.</p>
+                </div>
+                <div class="form-holder">
+                    <input type="text" name="incomeName" v-model="name" id="expenseItem" placeholder="Add Item" v-validate:name="{required: true}"/>
+                    <input type="number" name="incomeAmount" v-model="amount" id=expenseAmount" placeholder="Add Amount" v-validate:amount="{required: true, pattern:'/(0|[1-9][0-9]*)$/'}" />
+                    <button v-on:click="add" v-if="$validation2.valid">Add</button>
+                </div>
+            </validator>
 
             <div v-if="items.length > 0">
                 <table class="items-table">
@@ -18,7 +25,7 @@
                     <tr v-for="item in items">
                         <td>{{ item.name }}</td>
                         <td>{{ item.amount }}</td>
-                        <td><button v-on:click="removeItem($index)" class="remove-button">X</button></td>
+                        <td><span class="glyphicon glyphicon-remove remove-button" aria-hidden="true" v-on:click="removeItem($index)"></span></td>
                     </tr>
                 </table>
             </div>
@@ -27,6 +34,8 @@
 </template>
 
 <script>
+    import request from 'superagent';
+
     export default{
         name: 'Expense',
 
@@ -34,9 +43,13 @@
             return{
                 name: '',
                 amount: '',
+                identifier: '',
                 items: [],
                 display: true
             }
+        },
+        ready: function () {
+            this.initialLoad();
         },
         methods: {
             add: function (e) {
@@ -44,19 +57,50 @@
                 holdItems.name = this.name;
                 holdItems.amount = this.amount;
 
-                this.items.push(holdItems);
-                this.name = '';
-                this.amount = '';
-                this.updateTotal();
+                request
+                        .post('/add-expense')
+                        .set('X-CSRF-TOKEN', Laravel.csrfToken)
+                        .send({name: this.name, amount: this.amount})
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (err || !response.ok) {
+                                this.$notice(err.data.error, 'error');
+                            } else {
+                                this.$notice(response.body.success, 'success');
+                                holdItems.identifier = response.body.identifier;
+
+                                this.items.push(holdItems);
+
+                                this.name = '';
+                                this.amount = '';
+                                this.identifier = '';
+                                this.updateTotal();
+                            }
+                        }.bind(this));
             },
             removeItem: function (item) {
-                this.items.splice(item, 1);
-                this.updateTotal();
+                let itemId = this.items[item].identifier;
+
+                request
+                        .post('/remove-expense')
+                        .set('X-CSRF-TOKEN', Laravel.csrfToken)
+                        .send({item: itemId})
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (err || !response.ok) {
+                                this.$notice(err.body.error, 'error');
+                            } else {
+                                this.$notice(response.body.success, 'success');
+
+                                this.items.splice(item, 1);
+                                this.updateTotal();
+                            }
+                        }.bind(this));
             },
             updateTotal: function () {
                 let total = 0;
                 this.items.forEach(item => {
-                    total += parseInt(item.amount);
+                    total += parseFloat(item.amount);
                 });
 
                 this.$dispatch('expenses-total', total);
@@ -67,6 +111,24 @@
                 } else {
                     this.display = true;
                 }
+            },
+            initialLoad: function () {
+                request
+                        .get('/get-expense')
+                        .set('X-CSRF-TOKEN', Laravel.csrf)
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (response.body.expenses.length > 0) {
+                                response.body.expenses.forEach((expenses) => {
+                                    let holdItems = {};
+                                    holdItems.name = expenses.name;
+                                    holdItems.amount = expenses.amount;
+                                    holdItems.identifier = expenses.id;
+                                    this.items.push(holdItems);
+                                    this.updateTotal();
+                                });
+                            }
+                        }.bind(this));
             }
         }
     }
