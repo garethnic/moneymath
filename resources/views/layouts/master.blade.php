@@ -14,7 +14,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-        
+
         <link href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/slicknav.min.css') }}" rel="stylesheet">
