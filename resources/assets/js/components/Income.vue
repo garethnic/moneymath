@@ -141,6 +141,7 @@
                                 this.$notice(error.body.error, 'error');
                             } else {
                                 this.$notice(response.body.success, 'success');
+                                this.items = [];
                                 this.initialLoad();
                             }
                         }.bind(this));
@@ -161,6 +162,7 @@
                                 this.$notice(error.body.error, 'error');
                             } else {
                                 this.$notice(response.body.success, 'success');
+                                this.items = [];
                                 this.initialLoad();
                             }
                         }.bind(this));
