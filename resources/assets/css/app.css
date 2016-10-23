@@ -140,6 +140,11 @@ nav a {
     color: red;
     margin: 1%;
 }
+.update-fields {
+    width: 60%;
+    border: none;
+    height: 2em;
+}
 /*Table of items*/
 .items-table {
     width: 100%;
@@ -215,6 +220,9 @@ nav a {
     .overview-table {
         width: 100%;
     }
+    .update-fields {
+        width: 40%;
+    }
     .navBar {
         display:none;
     }
@@ -257,6 +265,9 @@ nav a {
     }
     .form-holder button {
         width: 30%;
+    }
+    .update-fields {
+        width: 70%;
     }
     .overview-table {
         width: 100%;
