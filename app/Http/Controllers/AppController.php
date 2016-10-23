@@ -55,6 +55,56 @@ class AppController extends Controller
         }
     }
 
+    public function editIncome(Request $request)
+    {
+        $user = $request->user();
+        $income = $user->incomes()->find($request->id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'amount' => 'required|numeric'
+        ]);
+
+        $income->update([
+            'name' => $request->name,
+            'amount' => $request->amount
+        ]);
+
+        if ($income) {
+            return response()->json([
+                'success' => 'Income updated!',
+                'identifier' => $income->id
+            ], 200);
+        } else {
+            return response()->json(['error' => 'Income not saved!', 500]);
+        }
+    }
+
+    public function editIncomeName(Request $request)
+    {
+        $user = $request->user();
+        $income = $user->incomes()->find($request->id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'amount' => 'required|numeric'
+        ]);
+
+        $income->update([
+            'name' => $request->name,
+            'amount' => $request->amount
+        ]);
+
+        if ($income) {
+            return response()->json([
+                'success' => 'Income updated!',
+                'identifier' => $income->id
+            ], 200);
+        } else {
+            return response()->json(['error' => 'Income not saved!', 500]);
+        }
+    }
+
     /**
      * Return Incomes
      *
