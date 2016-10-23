@@ -76,7 +76,7 @@ class AppController extends Controller
                 'identifier' => $income->id
             ], 200);
         } else {
-            return response()->json(['error' => 'Income not saved!', 500]);
+            return response()->json(['error' => 'Income not updated!', 500]);
         }
     }
 
@@ -101,7 +101,7 @@ class AppController extends Controller
                 'identifier' => $income->id
             ], 200);
         } else {
-            return response()->json(['error' => 'Income not saved!', 500]);
+            return response()->json(['error' => 'Income not updated!', 500]);
         }
     }
 
@@ -163,6 +163,56 @@ class AppController extends Controller
             ], 200);
         } else {
             return response()->json(['error' => 'Expense not saved!', 500]);
+        }
+    }
+
+    public function editExpense(Request $request)
+    {
+        $user = $request->user();
+        $income = $user->expenses()->find($request->id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'amount' => 'required|numeric'
+        ]);
+
+        $income->update([
+            'name' => $request->name,
+            'amount' => $request->amount
+        ]);
+
+        if ($income) {
+            return response()->json([
+                'success' => 'Expense updated!',
+                'identifier' => $income->id
+            ], 200);
+        } else {
+            return response()->json(['error' => 'Expense not updated!', 500]);
+        }
+    }
+
+    public function editExpenseName(Request $request)
+    {
+        $user = $request->user();
+        $income = $user->expenses()->find($request->id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'amount' => 'required|numeric'
+        ]);
+
+        $income->update([
+            'name' => $request->name,
+            'amount' => $request->amount
+        ]);
+
+        if ($income) {
+            return response()->json([
+                'success' => 'Expense updated!',
+                'identifier' => $income->id
+            ], 200);
+        } else {
+            return response()->json(['error' => 'Expense not updated!', 500]);
         }
     }
 

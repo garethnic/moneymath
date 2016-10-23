@@ -14,6 +14,8 @@ Route::get('/get-income', 'AppController@getIncome');
 Route::post('/remove-income', 'AppController@deleteIncome');
 
 Route::post('/add-expense', 'AppController@addExpense');
+Route::post('/edit-expense', 'AppController@editExpense');
+Route::post('/edit-expense-name', 'AppController@editExpenseName');
 Route::get('/get-expense', 'AppController@getExpense');
 Route::post('/remove-expense', 'AppController@deleteExpense');
 
