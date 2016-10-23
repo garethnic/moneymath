@@ -23,8 +23,22 @@
                         <th>Amount</th>
                     </tr>
                     <tr v-for="item in items">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.amount }}</td>
+                        <td><input
+                                type='name'
+                                name='expense-name-edit'
+                                id='expense-name-edit'
+                                class='update-fields'
+                                value='{{ item.name }}'
+                                v-on:keyup.enter='editName($index, $event)'
+                        /></td>
+                        <td><input
+                                type='number'
+                                name='expense-amount-edit'
+                                id='expense-amount-edit'
+                                class='update-fields'
+                                value='{{ parseInt(item.amount) }}'
+                                v-on:keyup.enter='editAmount($index, $event)'
+                        /></td>
                         <td><span class="glyphicon glyphicon-remove remove-button" aria-hidden="true" v-on:click="removeItem($index)"></span></td>
                     </tr>
                 </table>
@@ -111,6 +125,46 @@
                 } else {
                     this.display = true;
                 }
+            },
+                        editAmount: function (index, e) {
+                let amount = e.target.value;
+                let item = this.items[index];
+                item = Object.assign({}, item, {amount: amount});
+
+                request
+                        .post('/edit-expense')
+                        .set('X-CSRF-TOKEN', Laravel.csrfToken)
+                        .send({id: item.identifier, name: item.name, amount: item.amount})
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (err || !response.ok) {
+                                this.$notice(error.body.error, 'error');
+                            } else {
+                                this.$notice(response.body.success, 'success');
+                                this.initialLoad();
+                            }
+                        }.bind(this));
+
+            },
+            editName: function (index, e) {
+                let name = e.target.value;
+                let item = this.items[index];
+                item = Object.assign({}, item, {name: name});
+
+                request
+                        .post('/edit-expense-name')
+                        .set('X-CSRF-TOKEN', Laravel.csrfToken)
+                        .send({id: item.identifier, name: item.name, amount: item.amount})
+                        .accept('json')
+                        .end(function (err, response) {
+                            if (err || !response.ok) {
+                                this.$notice(error.body.error, 'error');
+                            } else {
+                                this.$notice(response.body.success, 'success');
+                                this.initialLoad();
+                            }
+                        }.bind(this));
+
             },
             initialLoad: function () {
                 request
