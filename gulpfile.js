@@ -17,7 +17,8 @@ elixir(mix => {
     mix.styles([
         'app.css'
     ], 'public/css/app.css')
-       .webpack('app.js');
+        .webpack('app.js')
+        .version(['css/app.css', 'js/app.js']);
 
     mix.copy('resources/assets/js/slicknav/jquery.slicknav.min.js', 'public/js/jquery.slicknav.min.js');
     mix.copy('resources/assets/js/slicknav/slicknav.min.css', 'public/css/slicknav.min.css');
