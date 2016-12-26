@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
         <link href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/slicknav.min.css') }}" rel="stylesheet">
 
         @yield('styles')
@@ -37,14 +37,12 @@
         </div>
 
         @yield('scripts')
-
         <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
         <script>
             $(document).ready(function () {
                 $('.navBar').slicknav({label: ''});
             });
-        </script>
-        <script>
+
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

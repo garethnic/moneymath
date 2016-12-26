@@ -10,15 +10,18 @@
                 <table class="contact-table">
                     <tr>
                         <th><strong>Contact</strong></th>
-                        <th><strong>Purpose</strong></th>
                     </tr>
                     <tr>
-                        <td><a href="mailto:info@moneymath.org.za?Subject=Help">info@moneymath.org.za</a></td>
-                        <td>For any further assistance or general enquiries</td>
+                        <td>
+                            <a href="mailto:info@moneymath.org.za?Subject=Help">info@moneymath.org.za</a>
+                            <p>For any further assistance or general enquiries</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td><a href="mailto:suggestions@moneymath.org.za?Subject=Suggestion">suggestions@moneymath.org.za</a></td>
-                        <td>For ideas on how to improve Moneymath</td>
+                        <td>
+                            <a href="mailto:suggestions@moneymath.org.za?Subject=Suggestion">suggestions@moneymath.org.za</a>
+                            <p>For ideas on how to improve Moneymath</p>
+                        </td>
                     </tr>
                 </table>
             </div>

@@ -11,6 +11,7 @@
                 </li>
             </form>
         @else
+            <li class="nav-item"><a href="/">Home</a></li>
             <li class="nav-item"><a href="/login">Login</a></li>
             <li class="nav-item"><a href="/contact">Contact</a></li>
             <li class="nav-item"><a href="/register">Register</a></li>
